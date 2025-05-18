@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/nacademy.png" type="image/x-icon">
+    <title>Nucleus Academy - Nepali Unicode Converter</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .brand-color {
+            background-color: #4caf50 !important;
+        }
+        .brand-text {
+            color: #4caf50 !important;
+        }
+        .footer {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px 0;
+        }
+        .logo-img {
+            max-width: 150px;
+            margin: 10px 0;
+        }
+        nav .brand-logo {
+            padding-left: 20px;
+        }
+        .unicode-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: calc(100vh - 64px - 160px); /* Adjust for navbar and footer */
+        }
+        .unicode-textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 150px;
+            margin: 10px 0;
+        }
+        .unicode-actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="brand-color">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Nucleus Academy</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="tools.html">Useful Tools</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidenav -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="tools.html">Useful Tools</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <!-- Nepali Unicode Converter Section -->
+    <div class="section" id="unicode-converter">
+        <div class="container">
+            <h4 class="center brand-text">Nepali Unicode Converter</h4>
+            <p class="center grey-text text-darken-3">Nepali unicode is a converter and it is the easiest way to type in Nepali unicode font. Type in Nepali romanized font below and it will automatically convert romanized Nepali text into Nepali font called Nepali unicode. This Nepali unicode is widely usable in any media, machine or browser. This can be used in chatting, emailing, messaging, Facebook, and many others.</p>
+            <div class="unicode-container">
+                <div class="row">
+                    <div class="col s12">
+                        <label for="ascii">Type Romanized Nepali</label>
+                        <textarea id="ascii" class="unicode-textarea materialize-textarea" placeholder="Type here (e.g., namaskar)"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="unicode">Nepali Unicode</label>
+                        <textarea id="unicode" class="unicode-textarea materialize-textarea" readonly></textarea>
+                    </div>
+                </div>
+                <div class="unicode-actions">
+                    <a class="waves-effect waves-light btn brand-color" onclick="selectAll()">Select All</a>
+                    <a class="waves-effect waves-light btn brand-color" onclick="clearInput()">Clear</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <img src="img/nacademy.png" alt="Nucleus Academy Logo" class="logo-img">
+                    <p>© 2025 Nucleus Academy. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize Materialize components
+        document.addEventListener('DOMContentLoaded', function() {
+            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        });
+
+        // Nepali Unicode Conversion Logic
+        var uD = {}, cR = {}, iW = {}, e = {};
+        e["99"] = "70"; e["131"] = "130"; e["70"] = "70"; e["93"] = "93"; e["108"] = "108"; e["125"] = "127"; e["126"] = "124"; e["107"] = "107"; e["152"] = "147"; e["146"] = "148"; e["149"] = "151"; e["136"] = "150";
+        function translateWords(sent, html) {
+            if (cR["65"] == "46") sent = sent.replace(/\s*\./g, " .").replace(/\s*\?/g, " ?");
+            var words = sent.split(" "), rVal = "", subs;
+            for (var i = 0; i < words.length; i++) {
+                words[i] = words[i].replace(/76\^/g, "145^");
+                if (cR["65"] == "46") {
+                    if (hasSW(words[i])) continue;
+                    if (e[words[i]]) words[i] = e[words[i]];
+                    else if (words[i].length > 3) {
+                        var ec_0, ec_1, ec_2, ec_3;
+                        ec_0 = words[i].charAt(words[i].length - 1).toLowerCase();
+                        ec_1 = words[i].charAt(words[i].length - 2).toLowerCase();
+                        ec_2 = words[i].charAt(words[i].length - 3).toLowerCase();
+                        ec_3 = words[i].charAt(words[i].length - 4).toLowerCase();
+                        if ((ec_0 == '27' || ec_0 == '53' || ec_0 == '26') && ec_1 == '73' && ec_2 == '37')
+                            words[i] = words[i].substring(0, words[i].length - 3) + "144" + ec_0;
+                        else if (ec_0 == '106') words[i] = words[i].substring(0, words[i].length - 1) + "139";
+                        else if (ec_0 == '27' && ec_1 == '73' && ec_2 == '73');
+                        else if (ec_0 == '27' && ec_1 == '45' && ec_2 == '43');
+                        else if (ec_0 == '27' && ec_1 == '45' && ec_2 == '73');
+                        else if (ec_0 == '27' && ec_1 == '45' && ec_2 == '90');
+                        else if (ec_0 == '27' && ec_1 == '90' && ec_2 == '84' && ec_3 == '45');
+                        else if (ec_0 == '27' && ec_1 == '90' && ec_2 == '61' && ec_3 == '45');
+                        else if (ec_0 == '27' && ((ec_1 == '138') || (!isVowel(ec_1) && !isVowel(ec_3) && ec_1 != '106' && ec_2 != '53')))
+                            words[i] += "27";
+                        if (ec_0 == '13' && !isVowel(ec_1)) words[i] = words[i].substring(0, words[i].length - 1) + "77";
+                    }
+                }
+                subs = words[i].split("/");
+                for (var j = 0; j < subs.length; j++) if (subs[j].length != 0) rVal += getAllUnicode(subs[j], html);
+                rVal += " ";
+            }
+            return rVal;
+        }
+        function hasSW(s) {
+            var k;
+            for (k = s.length - 2; k >= 0; k--) { if (cR[s.substring(k)]) return true; }
+            return false;
+        }
+        function getUnicode(s, html, source) {
+            var t = "", stopPos = 0, ar = s.split("+");
+            if (source && ar && ar.length > 1 && cR["65"] == "46" && ar[ar.length - 1] == "41") stopPos = 1;
+            if (ar) for (var k = 0; k < (ar.length - stopPos); k++) if (ar[k].length > 0 && !html) t += String.fromCharCode(ar[k]); else if (ar[k].length > 0 && html) t += "&#" + ar[k] + ";";
+            return t;
+        }
+        function getAllUnicode(s, html) {
+            var allUnicode = "", tryString, nextTryString = s;
+            nextTryString = nextTryString.replace(/121/g, "^^61^^").replace(/119/g, "^^84^^").replace(/120/g, "^^45^^").replace(/143/g, "^^83^^").replace(/118/g, "^^83^^");
+            nextTryString = nextTryString.toLowerCase();
+            nextTryString = nextTryString.replace(/\^\^61\^\^/g, "121").replace(/\^\^84\^\^/g, "119").replace(/\^\^45\^\^/g, "120").replace(/\^\^83\^\^/g, "118");
+            var conso = "";
+            while (nextTryString.length > 0) {
+                tryString = uD[nextTryString];
+                if (tryString || nextTryString.length <= 1) {
+                    if (tryString) allUnicode += getUnicode(tryString, !(conso.replace(/^\s+|\s+|\\$/,'').length > 0), html);
+                    else allUnicode += nextTryString;
+                    nextTryString = conso;
+                    conso = "";
+                } else {
+                    conso = nextTryString.charAt(nextTryString.length - 1) + conso;
+                    nextTryString = nextTryString.substring(0, nextTryString.length - 1);
+                }
+            }
+            if (allUnicode.length == 0) return s;
+            else return allUnicode;
+        }
+        function translate(source, destination, html, smart) {
+            var input = source.value, beginIndex = 0, endIndex = -1, nonSmartTokens = new Object(), tokenCount = 1, token = "", mask = "";
+            while (beginIndex > -1 && endIndex < input.length - 1) {
+                beginIndex = input.indexOf("{", endIndex + 1);
+                if (beginIndex > -1) {
+                    endIndex = input.indexOf("}", beginIndex + 1);
+                    if (endIndex == -1) endIndex = input.length - 1;
+                    token = input.substring(beginIndex, endIndex + 1);
+                    mask = "$-" + tokenCount + "-$";
+                    nonSmartTokens[mask] = token.substring(1, token.length - 1);
+                    input = input.replace(token, mask);
+                    endIndex = endIndex - token.length + mask.length;
+                    tokenCount++;
+                }
+            }
+            var smartTokens = new Object();
+            if (smart) {
+                smartConverter(true);
+                beginIndex = 0;
+                endIndex = -1;
+                token = "";
+                mask = "";
+                while (beginIndex > -1 && endIndex < input.length - 1) {
+                    beginIndex = input.indexOf("[", endIndex + 1);
+                    if (beginIndex > -1) {
+                        endIndex = input.indexOf("]", beginIndex + 1);
+                        if (endIndex == -1) endIndex = input.length - 1;
+                        token = input.substring(beginIndex, endIndex + 1);
+                        mask = "$-" + tokenCount + "-$";
+                        smartTokens[mask] = translateWords(token.substring(1, token.length - 1), html);
+                        input = input.replace(token, mask);
+                        endIndex = endIndex - token.length + mask.length;
+                        tokenCount++;
+                    }
+                }
+                smartConverter(false);
+            }
+            var unicode = translateWords(input, html);
+            if (smart) {
+                for (var mask in smartTokens) {
+                    unicode = unicode.replace(translateWords(mask, html).replace(" ", ""), smartTokens[mask].replace(/\s$/,""));
+                }
+            }
+            for (var mask in nonSmartTokens) {
+                unicode = unicode.replace(translateWords(mask, html).replace(" ", ""), nonSmartTokens[mask]);
+            }
+            destination.value = unicode;
+        }
+        function isVowel(c) {
+            c = c.toLowerCase();
+            if (c && c == "27" || c == "53" || c == "13" || c == "71" || c == "26") return true;
+            return false;
+        }
+        function smartConverter(smartflag) {
+            if (smartflag) {
+                for (var specialWord in cR) uD[specialWord] = cR[specialWord];
+                cR["65"] = "46";
+            } else {
+                for (var specialWord in cR) if (uD[specialWord]) uD[specialWord] = null;
+                cR["65"] = null;
+            }
+        }
+        iW["128"] = "133"; iW["134"] = "132"; iW["129"] = "63"; iW["99"] = "135"; iW["70"] = "123"; iW["141"] = "166"; iW["219"] = "218"; iW["217"] = "215"; iW["216"] = "220"; iW["221"] = "100"; iW["225"] = "224"; iW["223"] = "222"; iW["214"] = "79+41+117"; iW["213"] = "205"; iW["204"] = "79"; iW["203"] = "201"; iW["202"] = "63"; iW["206"] = "153"; iW["207"] = "63+41+102"; iW["212"] = "98"; iW["93"] = "211"; iW["210"] = "208"; iW["209"] = "95"; iW["227"] = "95+112+101+111+98"; iW["238"] = "245"; iW["243"] = "101"; iW["241"] = "100"; iW["242"] = "63"; iW["240"] = "91"; iW["244"] = "116"; iW["239"] = "231"; iW["230"] = "102"; iW["229"] = "228"; iW["232"] = "233"; iW["237"] = "236"; iW["235"] = "234"; iW["226"] = "122"; iW["199"] = "122"; iW["169"] = "63+41+116"; iW["168"] = "167"; iW["200"] = "117"; iW["170"] = "79";
+        uD["*"] = "171"; uD["**"] = "175"; uD["."] = "174"; uD["\\"] = "41"; uD["0"] = "173"; uD["1"] = "172"; uD["2"] = "165"; uD["3"] = "164"; uD["4"] = "157"; uD["5"] = "156"; uD["6"] = "155"; uD["7"] = "154"; uD["8"] = "158"; uD["9"] = "159"; uD["27"] = "105"; uD["163"] = "162"; uD["80"] = "161"; uD["160"] = "105+41"; uD["92"] = "176"; uD["177"] = "104"; uD["53"] = "193"; uD["13"] = "192"; uD["191"] = "190"; uD["71"] = "194"; uD["195"] = "104"; uD["81"] = "198"; uD["76^"] = "41+91+110"; uD["197"] = "91+41+196"; uD["189"] = "188"; uD["181"] = "180"; uD["26"] = "179";
+        for (var conso in iW) {
+            if (!uD[conso]) uD[conso] = iW[conso];
+            if (!uD[conso + "27"]) uD[conso + "27"] = iW[conso] + "+111";
+            var consoMinusA = conso.substring(0, conso.length - 1);
+            var consoVal = iW[conso];
+            if (!uD[consoMinusA + "13"]) uD[consoMinusA + "13"] = consoVal + "+110";
+            if (!uD[consoMinusA + "77"]) uD[consoMinusA + "77"] = consoVal + "+178";
+            if (!uD[consoMinusA + "26"]) uD[consoMinusA + "26"] = consoVal + "+182";
+            if (!uD[consoMinusA + "81"]) uD[consoMinusA + "81"] = consoVal + "+183";
+            if (!uD[consoMinusA + "76"]) uD[consoMinusA + "76"] = consoVal + "+187";
+            if (!uD[consoMinusA + "53"]) uD[consoMinusA + "53"] = consoVal + "+112";
+            if (!uD[consoMinusA + "80"]) uD[consoMinusA + "80"] = consoVal + "+186";
+            if (!uD[consoMinusA + "71"]) uD[consoMinusA + "71"] = consoVal + "+185";
+            if (!uD[consoMinusA + "92"]) uD[consoMinusA + "92"] = consoVal + "+184";
+            if (!uD[consoMinusA]) uD[consoMinusA] = consoVal + "+41";
+        }
+
+        // Event listeners for conversion
+        var asciiInput = document.getElementById('ascii');
+        var unicodeOutput = document.getElementById('unicode');
+        asciiInput.addEventListener('keyup', function() {
+            translate(asciiInput, unicodeOutput, false, true);
+        });
+
+        // Select All and Clear functions
+        function selectAll() {
+            var txtbox = document.getElementById('unicode');
+            if (txtbox.createTextRange) { // IE
+                var t = txtbox.createTextRange();
+                if (t.select) t.select();
+                if (t.execCommand) t.execCommand('copy');
+            }
+            if (txtbox.setSelectionRange) { // Mozilla
+                txtbox.setSelectionRange(0, txtbox.value.length);
+            } else if (txtbox.createTextRange) { // Opera
+                var r = txtbox.createTextRange();
+                r.select();
+            }
+            if (txtbox.focus) txtbox.focus();
+        }
+        function clearInput() {
+            if (asciiInput.value.length < 30 || confirm("Are you sure you want to clear what you typed?")) {
+                asciiInput.value = "";
+                unicodeOutput.value = "";
+                asciiInput.focus();
+            }
+        }
+
+        // Initialize smart converter and focus
+        smartConverter(true);
+        translate(asciiInput, unicodeOutput, false, true);
+        asciiInput.focus();
+    </script>
+</body>
+</html>
