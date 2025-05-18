@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/nacademy.png" type="image/x-icon">
+    <title>Nucleus Academy - Nepali Date Converter</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .brand-color {
+            background-color: #4caf50 !important;
+        }
+        .brand-text {
+            color: #4caf50 !important;
+        }
+        .footer {
+            background-color: #4caf50;
+            color: white;
+            padding: 20px 0;
+        }
+        .logo-img {
+            max-width: 150px;
+            margin: 10px 0;
+        }
+        nav .brand-logo {
+            padding-left: 20px;
+        }
+        .widget-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 64px - 160px); /* Adjust for navbar and footer */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="brand-color">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">Nucleus Academy</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#courses">Courses</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="tools.html">Useful Tools</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidenav -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="tools.html">Useful Tools</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <!-- Nepali Date Converter Section -->
+    <div class="section" id="date-converter">
+        <div class="container">
+            <h4 class="center brand-text">Nepali Date Converter</h4>
+            <p class="center grey-text text-darken-3">Convert dates between the Gregorian calendar and the Nepali Bikram Sambat calendar with ease.</p>
+            <div class="widget-container">
+                <iframe src="https://www.hamropatro.com/widgets/dateconverter.php" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" style="border:none; overflow:hidden; width:350px; height:150px;" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center">
+                    <img src="himg/nacademy.png" alt="Nucleus Academy Logo" class="logo-img">
+                    <p>© 2025 Nucleus Academy. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize Materialize components
+        document.addEventListener('DOMContentLoaded', function() {
+            M.Sidenav.init(document.querySelectorAll('.sidenav'));
+        });
+    </script>
+</body>
+</html>
